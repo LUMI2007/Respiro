@@ -1,0 +1,143 @@
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f5f4f1; 
+    transition: background-color 1.5s ease-in-out; 
+}
+
+
+#lienzo-fuegos {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none; z-index: 5; background: transparent;
+}
+
+
+.fade-element { opacity: 1; transition: opacity 1.5s ease-in-out; }
+.fade-out { opacity: 0 !important; }
+.oculto { display: none !important; }
+
+
+#pantalla-bienvenida {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background: linear-gradient(135deg, #fefdfa 0%, #f0ece3 50%, #e3dccd 100%);
+    display: flex; justify-content: center; align-items: center; z-index: 9999; cursor: pointer;
+}
+
+.mensaje-bienvenida {
+    background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);
+    padding: 60px 80px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.8); text-align: center;
+}
+
+.mensaje-bienvenida h1 { font-size: 34px; color: #4b5563; margin-bottom: 25px; font-weight: normal; font-style: italic; }
+.mensaje-bienvenida p {
+    font-size: 15px; letter-spacing: 1.5px; color: #6b7280; font-family: sans-serif;
+    padding: 12px 25px; border: 1px solid #d1d5db; border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.8); animation: respirar 2.5s infinite ease-in-out;
+}
+
+
+#pantalla-inicio-citas {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 80px 20px; cursor: pointer; color: #1a1a1a;
+    background: radial-gradient(circle at 50% 0%, #ffffff 0%, #f5f4f1 60%, #eae7de 100%);
+}
+
+.cita-contenedor {
+    max-width: 900px; width: 100%; background: rgba(255, 255, 255, 0.7);
+    padding: 40px 50px; border-radius: 25px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.9); display: flex; flex-direction: row-reverse; 
+    justify-content: flex-start; align-items: center; gap: 40px; margin-bottom: 60px; text-align: right; position: relative; overflow: hidden;
+}
+
+.cita-contenedor::before {
+    content: "“"; font-size: 200px; color: #d1d5db; position: absolute; top: -20px; left: 20px; font-family: 'Georgia', serif; opacity: 0.25; line-height: 1; z-index: 0;
+}
+
+.cara-personaje {
+    width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+    border: 4px solid #ffffff; box-shadow: 0 8px 25px rgba(0,0,0,0.12); flex-shrink: 0; position: relative; z-index: 1;
+}
+
+.cita-texto { font-size: 22px; font-style: italic; line-height: 1.8; position: relative; z-index: 1; }
+.cita-texto span { font-weight: bold; font-style: normal; font-size: 18px; display: block; margin-top: 12px; color: #6b7280; }
+.click-continuar { margin-top: 30px; opacity: 0.5; font-family: sans-serif; font-size: 15px; letter-spacing: 2px; animation: respirar 3s infinite; }
+
+@keyframes respirar { 0% { opacity: 0.3; } 50% { opacity: 0.8; } 100% { opacity: 0.3; } }
+
+
+#pantalla-titulo-cuento {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background: linear-gradient(to bottom, #0a0b10, #12141c, #161824);
+    display: flex; justify-content: center; align-items: center; z-index: 9000; cursor: pointer; text-align: center; color: #e5e7eb;
+}
+
+.mensaje-titulo h1 { font-family: 'Lora', serif; font-size: 40px; font-weight: normal; font-style: italic; margin-bottom: 30px; letter-spacing: 1px; color: #f3f4f6; }
+.mensaje-titulo p { font-family: sans-serif; font-size: 15px; letter-spacing: 2px; color: #9ca3af; animation: respirar 3s infinite; }
+
+
+#pantalla-historia {
+    background: linear-gradient(to bottom, #0a0b10, #12141c, #161824);
+    color: #e5e7eb; min-height: 100vh; padding: 80px 20px; display: flex; justify-content: center; position: relative;
+}
+
+.polvo-estelar {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px);
+    background-size: 90px 90px; opacity: 0.04; pointer-events: none; z-index: 0;
+}
+
+.contenedor-principal { max-width: 680px; width: 100%; position: relative; z-index: 10; }
+
+.texto-cuento {
+    font-family: 'Lora', serif; font-size: 20px; line-height: 1.9; color: #d1d5db;
+    margin-bottom: 30px; text-align: justify; text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.separador-estelar { text-align: center; color: #9ca3af; font-size: 18px; letter-spacing: 20px; margin: 60px 0; opacity: 0.5; }
+
+
+.dedicatoria {
+    position: relative; margin-top: 40px; padding: 40px 45px;
+    background: rgba(255, 255, 255, 0.02); border-left: 3px solid #6b7280; border-right: 1px solid rgba(255,255,255,0.05);
+    border-radius: 5px 15px 15px 5px; font-style: italic; color: #9ca3af;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.dedicatoria::before {
+    content: "❝"; position: absolute; top: 15px; left: 15px; font-size: 24px; color: #4b5563; font-family: 'Georgia', serif; opacity: 0.5;
+}
+
+
+.contenedor-boton-magico { display: flex; justify-content: center; margin-top: 60px; margin-bottom: 20px; }
+
+#btn-fuegos {
+    background: rgba(255, 255, 255, 0.05); color: #e5e7eb;
+    border: 1px solid rgba(255,255,255,0.2); padding: 16px 40px; border-radius: 40px;
+    font-family: 'Lora', serif; font-size: 17px; font-style: italic; letter-spacing: 2px;
+    cursor: pointer; transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05), inset 0 0 10px rgba(255,255,255,0.02);
+}
+
+#btn-fuegos:hover {
+    background: rgba(255, 255, 255, 0.1); color: #ffffff;
+    border-color: rgba(255,255,255,0.6); 
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.15), inset 0 0 15px rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+}
+
+
+.galeria-final { display: flex; justify-content: space-between; gap: 15px; margin-top: 50px; padding-bottom: 40px; }
+
+.galeria-final img {
+    width: 31%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.15); 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.galeria-final img:hover {
+    transform: translateY(-3px); border-color: rgba(255,255,255,0.4);
+}
